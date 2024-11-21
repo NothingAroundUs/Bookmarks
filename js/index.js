@@ -15,8 +15,6 @@ if (localStorage.getItem("bookmarksList")) {
     }
 }
 
-// =====> Display Function and adding click event to visit and delete buttons
-
 function displayBookmark(indexOfWebsite) {
     var userURL = bookmarks[indexOfWebsite].siteURL;
     var httpsRegex = /^https?:\/\//g;
@@ -49,8 +47,6 @@ function displayBookmark(indexOfWebsite) {
             `;
     tableContent.innerHTML += newBookmark;
 
-    // =====> Adding Click Event to All delete buttons every time a new bookmark being added
-
     deleteBtns = document.querySelectorAll(".btn-delete");
     if (deleteBtns) {
         for (var j = 0; j < deleteBtns.length; j++) {
@@ -60,7 +56,6 @@ function displayBookmark(indexOfWebsite) {
         }
     }
 
-    // =====> Adding Click Event to All visit buttons every time a new bookmark being added
 
     visitBtns = document.querySelectorAll(".btn-visit");
     if (visitBtns) {
@@ -72,22 +67,18 @@ function displayBookmark(indexOfWebsite) {
     }
 }
 
-// =====> Clear Input Function
 
 function clearInput() {
     siteName.value = "";
     siteURL.value = "";
 }
 
-// =====> Capitalize Function ==> take string and makes it capitalize
 
 function capitalize(str) {
     let strArr = str.split("");
     strArr[0] = strArr[0].toUpperCase();
     return strArr.join("");
 }
-
-// =====> Submit Function
 
 submitBtn.addEventListener("click", function () {
     if (
@@ -109,8 +100,6 @@ submitBtn.addEventListener("click", function () {
     }
 });
 
-// =====> Delete Function
-
 function deleteBookmark(e) {
     tableContent.innerHTML = "";
     var deletedIndex = e.target.dataset.index;
@@ -121,8 +110,6 @@ function deleteBookmark(e) {
     localStorage.setItem("bookmarksList", JSON.stringify(bookmarks));
 }
 
-// =====> Visit Function
-
 function visitWebsite(e) {
     var websiteIndex = e.target.dataset.index;
     var httpsRegex = /^https?:\/\//;
@@ -132,8 +119,6 @@ function visitWebsite(e) {
         open(`https://${bookmarks[websiteIndex].siteURL}`);
     }
 }
-
-// =====> Making sure that user enter the correct data
 
 var nameRegex = /^\w{3,}(\s+\w+)*$/;
 var urlRegex = /^(https?:\/\/)?(w{3}\.)?\w+\.\w{2,}\/?(:\d{2,5})?(\/\w+)*$/;
@@ -157,13 +142,9 @@ function validate(element, regex) {
     }
 }
 
-//Close Modal Function
-
 function closeModal() {
     boxModal.classList.add("d-none");
 }
-
-// 3 ways to close modal => close button -  Esc key - clicking outside modal
 
 closeBtn.addEventListener("click", closeModal);
 
